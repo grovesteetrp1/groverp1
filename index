@@ -1501,7 +1501,7 @@
                 
             } catch (error) {
                 console.error('Ошибка загрузки данных:', error);
-                showError(error.message || 'Не удалось загрузить данные. Проверьте подключение к интернету.');
+                showError(error.message || 'Не удалось загрузить данные. Проверьте подключение к интернету');
             } finally {
                 refreshBtn.classList.remove('loading');
                 refreshBtn.disabled = false;
