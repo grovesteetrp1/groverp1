@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,6 +8,7 @@
     <link rel="icon" type="image/png" href="grove.png">
 
     <style>
+
         :root {
             --bg-gradient: linear-gradient(135deg, #0a0e27 0%, #1e1e3f 50%, #2d1b69 100%);
             --glass-bg: rgba(255, 255, 255, 0.1);
@@ -63,6 +65,7 @@
             color: var(--text-secondary);
             font-weight: 300;
         }
+
 
         .statistics-container {
             display: grid;
@@ -149,6 +152,7 @@
             letter-spacing: 0.5px;
         }
 
+
         .progress-bar-container {
             width: 100%;
             margin-top: 12px;
@@ -187,6 +191,7 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
 
         .filters-container {
             background: var(--glass-bg);
@@ -450,6 +455,32 @@
         .card.failed::before {
             background: linear-gradient(135deg, var(--error), #f87171);
         }
+        
+
+        .card.senior-staff {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(217, 119, 6, 0.2));
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .card.senior-staff::before {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+        
+        .card.senior-staff .exam-type-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+        
+
+        .contact-blur {
+            filter: blur(8px);
+            transition: filter 0.3s ease;
+            user-select: none;
+        }
+        
+        .contact-blur:hover {
+            filter: blur(0px);
+            user-select: text;
+        }
 
         .card:hover {
             transform: translateY(-8px) scale(1.02);
@@ -547,6 +578,7 @@
             flex-direction: column;
             gap: 12px;
         }
+
 
         .modal {
             display: none;
@@ -725,6 +757,24 @@
             border-left-color: var(--tertiary);
             transform: translateX(4px);
         }
+        
+
+        .answer-item.correct {
+            background: rgba(16, 185, 129, 0.2);
+            border-left-color: #10b981;
+            border: 2px solid #10b981;
+        }
+        
+        .answer-item.incorrect {
+            background: rgba(239, 68, 68, 0.2);
+            border-left-color: #ef4444;
+            border: 2px solid #ef4444;
+        }
+        
+        .answer-icon {
+            font-size: 1.2rem;
+            margin-right: 8px;
+        }
 
         .answer-label {
             font-weight: 700;
@@ -733,6 +783,42 @@
             margin-bottom: 8px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .answer-item.correct .answer-label {
+            color: #10b981;
+        }
+        
+        .answer-item.incorrect .answer-label {
+            color: #ef4444;
+        }
+        
+
+        .correct-count-banner {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(6, 182, 212, 0.3));
+            border: 2px solid #10b981;
+            border-radius: 12px;
+            padding: 16px 24px;
+            margin-bottom: 24px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+
+        .senior-staff-message {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(217, 119, 6, 0.2));
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-primary);
         }
 
         .answer-value {
@@ -769,6 +855,7 @@
             word-break: break-word;
             font-weight: 500;
         }
+
 
 
 
@@ -866,6 +953,7 @@
             }
         }
 
+
         .card:nth-child(1) { animation-delay: 0.1s; }
         .card:nth-child(2) { animation-delay: 0.2s; }
         .card:nth-child(3) { animation-delay: 0.3s; }
@@ -888,6 +976,7 @@
             -webkit-backdrop-filter: blur(20px);
             font-weight: 600;
         }
+
 
         .modal-content::-webkit-scrollbar {
             width: 10px;
@@ -917,7 +1006,6 @@
 
         <div id="statisticsContainer" class="statistics-container" style="display: none;">
         </div>
-
         <div class="filters-container" id="filtersContainer" style="display: none;">
             <div class="filter-row">
                 <div class="filter-group">
@@ -948,14 +1036,69 @@
                 </div>
             </div>
         </div>
-
         <div id="content">
         </div>
     </div>
 
     <script>
+
         const API_URL = 'https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLj2NQM6zC4T5iRTFqF7w8nC5l6N5zpZfQh97WSOcf2TvoeJhM6tJIqpuGKzk_xiTrNtU0anYfXqoU30njgrYg7ltc62W-fnwrrH1eTaPBqA9dazTWWU5bTwzLl4J_cDXdKqkd0eyclMHusEei4ekneNKFQrlCVJ4shMDrmzVl6pH4iAAht6wq-sovTM4OqvXuKhybSTonQiKnvCNxtI7-e-H0gX-q3pHp8WZKl0700IoPJDiXZT1V142-rJ87rkcsNOkH5aWWgjLMtPzZWWZOms-RwYM_G48V_aKjWN&lib=MHWFXZt9OZWlcv2PWzngd7CL2PWyMTp-G';
-        
+
+        const correctAnswers = {
+            'Вступительный экзамен Плэйя': {
+                'F': 'Все варианты ответа правильные',
+                'G': '200 патронов и 20 металла на 6 часов',
+                'H': 'Косяк с последующим понижением',
+                'I': 'Понижение с последующим увольнением',
+                'J': 'За нарушение я получу косяк, понижение и/или увольнение',
+                'K': 'Понижение и/или увольнение',
+                'L': 'Выполню указание старшего состава',
+                'M': 'Если целится с винтовки или снайперки то разрешено его ликвидировать по правилам самообороны',
+                'V': 'Все варианты правильные и обязательные',
+                'W': 'Ушел с моего района, у тебя 3 секунды! Один! Два! Три!',
+                'X': 'Да, в случае спорных моментов у меня будут доказательства',
+                'Y': 'Не стану трогать, ибо он уйдет после взятие точки',
+                'Z': '',
+                'AA': 'В любом составе, даже когда ты один',
+                'AB': 'Помогу ему, но меня могут наказать, в случае, если он не прав',
+                'AC': 'Остановлюсь',
+                'AD': 'Буду слушать полицейского, оплачу штраф по статье А.К 5.1',
+                'AE': '"Макеты", "Страйкбольные патроны"',
+                'AF': 'Отправлю репорт, буду ждать когда накажут',
+                'AG': 'Буду следовать указаниям полицейского',
+                'AH': 'В любом составе',
+                'AI': 'Запрещено',
+                'AJ': 'Разрешено стрелять только с пассажирского сидения мотоцикла или квадроцикла',
+                'AK': 'Нет',
+                'AL': 'Не поеду с ним, потому что мне запрещено',
+                'AM': 'В любое время',
+                'AN': 'Я не могу использовать снайперскую винтовку при нападении',
+                'AO': 'Если военный байтит'
+            },
+            'Правила ограбления и угона транспорта': {
+                'AP': 'Два бандита на одну жертву и более',
+                'AQ': 'С 4 ранга и выше',
+                'AR': 'Игроков ниже 5 уровня, Полицейский, военных и докторов на карете скоро помощи, Работников мэрии (дальнобойщики, развозчики еды, таксисты и тд), Бандитов и мафиози',
+                'AS': '10.000$',
+                'AT': 'Только в случае, если он игнорирует указания',
+                'AU': 'Если жертва отказывается давать деньги, Если жертва отказывается предоставить доказательства последнего ограбления, произошедшего в течение последних 2 часов.',
+                'AV': 'Нет',
+                'AW': '',
+                'AX': '',
+                'AY': 'Нет, запрещено',
+                'AZ': 'Нет',
+                'BA': 'Запрещено, полицейский просто проверяет состояние транспорта',
+                'BB': 'Да, только если подтвердился угон',
+                'BC': 'Остановлюсь, оплачу штраф, проверят транспорт и меня отпустят'
+            }
+        };
+        const seniorStaffExams = [
+            'Экзамен среднего состава'
+        ];
+
+        function isSeniorStaffExam(examType) {
+            return seniorStaffExams.includes(examType);
+        }
         let allData = [];
         let filteredData = [];
         
@@ -1037,6 +1180,7 @@
             }
         };
 
+
         function showLoading() {
             const content = document.getElementById('content');
             content.innerHTML = `
@@ -1046,6 +1190,7 @@
                 </div>
             `;
         }
+
 
         function showError(message) {
             const content = document.getElementById('content');
@@ -1059,12 +1204,12 @@
             document.getElementById('stats').textContent = 'Ошибка';
         }
 
+
         function normalizeData(data) {
-            
             if (data.data && Array.isArray(data.data)) {
                 return data.data;
             }
-            
+
             if (data.values && Array.isArray(data.values)) {
                 const values = data.values;
                 if (values.length === 0) return [];
@@ -1080,7 +1225,6 @@
                     return obj;
                 });
             }
-            
             if (Array.isArray(data) && data.length > 0 && Array.isArray(data[0])) {
                 const headers = data[0];
                 const rows = data.slice(1);
@@ -1093,7 +1237,6 @@
                     return obj;
                 });
             }
-            
             if (Array.isArray(data)) {
                 return data;
             }
@@ -1101,11 +1244,13 @@
             return [];
         }
 
+
         const PASSING_SCORES = {
             'Вступительный экзамен Плэйя': 22,
             'Правила ограбления и угона транспорта': 9,
             'Экзамен среднего состава': 0
         };
+
 
         function isPassed(score, examType) {
             if (typeof score !== 'number' && typeof score !== 'string') {
@@ -1125,38 +1270,7 @@
             return numScore >= passingScore;
         }
 
-        function formatValue(value) {
-            if (value === null || value === undefined || value === '') {
-                return '—';
-            }
-            
-            const dateRegex = /^\d{4}-\d{2}-\d{2}|\d{2}\.\d{2}\.\d{4}|\d{2}\/\d{2}\/\d{4}$/;
-            if (typeof value === 'string' && dateRegex.test(value)) {
-                try {
-                    const date = new Date(value);
-                    if (!isNaN(date.getTime())) {
-                        return date.toLocaleDateString('ru-RU', { 
-                            year: 'numeric', 
-                            month: 'long', 
-                            day: 'numeric' 
-                        });
-                    }
-                } catch (e) {
-                    return value;
-                }
-            }
-            
-            if (!isNaN(value) && value !== '' && typeof value !== 'boolean') {
-                const num = parseFloat(value);
-                if (num > 999) {
-                    return num.toLocaleString('ru-RU');
-                }
-            }
-            
-            return value;
-        }
 
-        let currentModalData = null;
 
         function createCard(item, index) {
             const card = document.createElement('div');
@@ -1173,54 +1287,85 @@
             const dateStr = date ? date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Не указана';
             const timeStr = date ? date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }) : '';
             
-            const passed = isPassed(score, examType);
-            const passingScore = PASSING_SCORES[examType] || 10;
+            const isSenior = isSeniorStaffExam(examType);
             
-            if (passed === true) {
-                card.classList.add('passed');
-            } else if (passed === false) {
-                card.classList.add('failed');
+            let cardHTML = '';
+
+            if (isSenior) {
+                card.classList.add('senior-staff');
+                
+                cardHTML = `
+                    <div class="card-header">
+                        <span class="exam-type-badge">${examType}</span>
+                        <div class="card-title">
+                            <span>${name}</span>
+                        </div>
+                        <div class="card-subtitle">${dateStr} в ${timeStr}</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-field">
+                            <span class="field-label">Статус:</span>
+                            <span class="field-value"><span class="result-badge" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 2px solid #f59e0b;">🔍 Проверяется вручную</span></span>
+                        </div>
+                        <div class="card-field">
+                            <span class="field-label">Контакт:</span>
+                            <span class="field-value contact-blur">${contact}</span>
+                        </div>
+                    </div>
+                `;
+            } else {
+                const passed = isPassed(score, examType);
+                const passingScore = PASSING_SCORES[examType] || 10;
+
+                if (passed === true) {
+                    card.classList.add('passed');
+                } else if (passed === false) {
+                    card.classList.add('failed');
+                }
+                
+                let resultBadge = '';
+                if (passed !== null) {
+                    resultBadge = passed ? 
+                        `<span class="result-badge pass">✅ Сдал</span>` : 
+                        `<span class="result-badge fail">❌ Не сдал</span>`;
+                }
+                
+                cardHTML = `
+                    <div class="card-header">
+                        <span class="exam-type-badge">${examType}</span>
+                        <div class="card-title">
+                            <span>${name}</span>
+                        </div>
+                        <div class="card-subtitle">${dateStr} в ${timeStr}</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-field">
+                            <span class="field-label">Статус:</span>
+                            <span class="field-value">${resultBadge}</span>
+                        </div>
+                        <div class="card-field">
+                            <span class="field-label">Контакт:</span>
+                            <span class="field-value contact-blur">${contact}</span>
+                        </div>
+                    </div>
+                `;
             }
-            
-            let resultBadge = '';
-            if (passed !== null) {
-                resultBadge = passed ? 
-                    `<span class="result-badge pass">✓ Сдал (${score}/${passingScore})</span>` : 
-                    `<span class="result-badge fail">✗ Не сдал (${score}/${passingScore})</span>`;
-            }
-            
-            let cardHTML = `
-                <div class="card-header">
-                    <span class="exam-type-badge">${examType}</span>
-                    <div class="card-title">
-                        <span>${name}</span>
-                    </div>
-                    <div class="card-subtitle">${dateStr} в ${timeStr}</div>
-                </div>
-                <div class="card-body">
-                    <div class="card-field">
-                        <span class="field-label">Результат:</span>
-                        <span class="field-value">${resultBadge}</span>
-                    </div>
-                    <div class="card-field">
-                        <span class="field-label">Балл:</span>
-                        <span class="field-value"><strong>${score} баллов</strong></span>
-                    </div>
-                    <div class="card-field">
-                        <span class="field-label">Контакт:</span>
-                        <span class="field-value">${contact}</span>
-                    </div>
-                </div>
-            `;
             
             card.innerHTML = cardHTML;
-            
+
             card.addEventListener('click', function() {
-                openModal(item, dateStr, timeStr, examType, name, score, contact, passed, passingScore);
+                if (isSenior) {
+                    openSeniorStaffModal(item, dateStr, timeStr, examType, name, contact);
+                } else {
+                    const passed = isPassed(score, examType);
+                    const passingScore = PASSING_SCORES[examType] || 10;
+                    openModal(item, dateStr, timeStr, examType, name, score, contact, passed, passingScore);
+                }
             });
             
             return card;
         }
+
 
         function openModal(item, dateStr, timeStr, examType, name, score, contact, passed, passingScore) {
             const modal = document.getElementById('examModal');
@@ -1230,41 +1375,102 @@
             const modalScore = document.getElementById('modalScore');
             const modalContact = document.getElementById('modalContact');
             const modalAnswers = document.getElementById('modalAnswers');
-            
+
+            document.querySelector('.modal-info-item:nth-child(2) .modal-info-label').textContent = '🎯 Балл';
+
             const statusEmoji = passed ? '✅' : '❌';
             const statusText = passed ? 'Сдал' : 'Не сдал';
             modalTitle.innerHTML = `${statusEmoji} ${name}`;
             modalSubtitle.innerHTML = `<span class="exam-type-badge">${examType}</span>`;
-            
+
             modalDate.textContent = `${dateStr} в ${timeStr}`;
             modalScore.innerHTML = `<strong>${score}/${passingScore}</strong> баллов`;
             modalContact.textContent = contact;
+
+            const { correct, total } = countCorrectAnswers(item, examType);
+
+            let answersContent = '';
+
+            if (total > 0) {
+                answersContent += `
+                    <div class="correct-count-banner">
+                        ✅ Правильных ответов: ${correct} из ${total}
+                    </div>
+                `;
+            }
             
-            modalAnswers.innerHTML = generateAnswers(item, examType);
-            
+            answersContent += generateAnswers(item, examType);
+            modalAnswers.innerHTML = answersContent;
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
+
 
         function closeModal() {
             const modal = document.getElementById('examModal');
             modal.classList.remove('active');
             document.body.style.overflow = '';
         }
-        
+
+        function countCorrectAnswers(item, examType) {
+            const mapping = EXAM_QUESTIONS[examType];
+            const correctExamAnswers = correctAnswers[examType];
+            
+            if (!mapping || !correctExamAnswers) {
+                return { correct: 0, total: 0 };
+            }
+            
+            let correct = 0;
+            let total = 0;
+            
+            mapping.fields.forEach((field) => {
+                const userAnswer = item[field];
+                const correctAnswer = correctExamAnswers[field];
+                
+                if (userAnswer && correctAnswer) {
+                    total++;
+                    const normalizedUser = String(userAnswer).trim().toLowerCase();
+                    const normalizedCorrect = String(correctAnswer).trim().toLowerCase();
+                    if (normalizedUser === normalizedCorrect) {
+                        correct++;
+                    }
+                }
+            });
+            
+            return { correct, total };
+        }
+
         function generateAnswers(item, examType) {
             const mapping = EXAM_QUESTIONS[examType];
             if (!mapping) {
                 return '<p style="color: #999;">Ответы не найдены для данного типа экзамена</p>';
             }
             
+            const correctExamAnswers = correctAnswers[examType] || {};
+            
             let answersHTML = '';
             mapping.fields.forEach((field, idx) => {
                 const answer = item[field];
                 if (answer) {
+                    const correctAnswer = correctExamAnswers[field];
+                    let answerClass = '';
+                    let icon = '';
+                    if (correctAnswer && correctAnswer.trim() !== '') {
+                        const normalizedUser = String(answer).trim().toLowerCase();
+                        const normalizedCorrect = String(correctAnswer).trim().toLowerCase();
+                        
+                        if (normalizedUser === normalizedCorrect) {
+                            answerClass = 'correct';
+                            icon = '<span class="answer-icon">✅</span>';
+                        } else {
+                            answerClass = 'incorrect';
+                            icon = '<span class="answer-icon">❌</span>';
+                        }
+                    }
+                    
                     answersHTML += `
-                        <div class="answer-item">
-                            <div class="answer-label">Вопрос ${idx + 1}: ${mapping.labels[idx]}</div>
+                        <div class="answer-item ${answerClass}">
+                            <div class="answer-label">${icon}Вопрос ${idx + 1}: ${mapping.labels[idx]}</div>
                             <div class="answer-value">${answer}</div>
                         </div>
                     `;
@@ -1278,6 +1484,44 @@
             return answersHTML;
         }
 
+        function openSeniorStaffModal(item, dateStr, timeStr, examType, name, contact) {
+            const modal = document.getElementById('examModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalSubtitle = document.getElementById('modalSubtitle');
+            const modalDate = document.getElementById('modalDate');
+            const modalScore = document.getElementById('modalScore');
+            const modalContact = document.getElementById('modalContact');
+            const modalAnswers = document.getElementById('modalAnswers');
+
+            modalTitle.innerHTML = `🔍 ${name}`;
+            modalSubtitle.innerHTML = `<span class="exam-type-badge" style="background: linear-gradient(135deg, #f59e0b, #d97706);">${examType}</span>`;
+            modalDate.textContent = `${dateStr} в ${timeStr}`;
+            modalScore.innerHTML = '<strong style="color: #f59e0b;">Проверяется вручную</strong>';
+            document.querySelector('.modal-info-item:nth-child(2) .modal-info-label').textContent = '📋 Статус';
+            modalContact.textContent = contact;
+
+            // Generate answers WITHOUT the senior message
+            const mapping = EXAM_QUESTIONS[examType];
+            let answersHTML = '';
+            if (mapping) {
+                mapping.fields.forEach((field, idx) => {
+                    const answer = item[field];
+                    if (answer) {
+                        answersHTML += `
+                            <div class="answer-item" style="border-left-color: #f59e0b;">
+                                <div class="answer-label" style="color: #f59e0b;">Вопрос ${idx + 1}: ${mapping.labels[idx]}</div>
+                                <div class="answer-value">${answer}</div>
+                            </div>
+                        `;
+                    }
+                });
+            }
+            modalAnswers.innerHTML = answersHTML || '<p style="color: #999;">Ответы отсутствуют</p>';
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+
         function displayData(data) {
             const content = document.getElementById('content');
             
@@ -1285,7 +1529,7 @@
                 content.innerHTML = '<div class="no-data">📭 Нет данных для отображения</div>';
                 return;
             }
-            
+
             const groupedByMonth = {};
             data.forEach(item => {
                 const date = item.A ? new Date(item.A) : null;
@@ -1299,7 +1543,7 @@
             });
             
             content.innerHTML = '';
-            
+
             const sortedMonths = Object.keys(groupedByMonth).sort((a, b) => {
                 const dateA = new Date(groupedByMonth[a][0].A);
                 const dateB = new Date(groupedByMonth[b][0].A);
@@ -1324,14 +1568,25 @@
             });
         }
 
+
         function calculateStatistics(data) {
-            const total = data.length;
+            const regularExams = data.filter(item => {
+                const examType = item.C || '';
+                return !isSeniorStaffExam(examType);
+            });
+            
+            const seniorExams = data.filter(item => {
+                const examType = item.C || '';
+                return isSeniorStaffExam(examType);
+            });
+            
+            const total = regularExams.length;
             let passed = 0;
             let failed = 0;
-            
+
             const byExamType = {};
             
-            data.forEach(item => {
+            regularExams.forEach(item => {
                 const scoreValue = item.D || 0;
                 const score = typeof scoreValue === 'string' ? parseFloat(scoreValue) : scoreValue;
                 const examType = item.C || 'Неизвестно';
@@ -1348,9 +1603,16 @@
                 else if (result === false) byExamType[examType].failed++;
             });
             
-            return { total, passed, failed, byExamType };
+            return { 
+                total, 
+                passed, 
+                failed, 
+                byExamType,
+                seniorTotal: seniorExams.length,
+                hasSeniorExams: seniorExams.length > 0
+            };
         }
-        
+
         function displayStatistics(data) {
             const stats = calculateStatistics(data);
             const container = document.getElementById('statisticsContainer');
@@ -1358,44 +1620,105 @@
             
             const passPercentage = stats.total > 0 ? Math.round((stats.passed / stats.total) * 100) : 0;
             const failPercentage = stats.total > 0 ? Math.round((stats.failed / stats.total) * 100) : 0;
+
+            let statsHTML = '';
             
-            container.innerHTML = `
-                <div class="stat-card" style="animation-delay: 0.1s;">
-                    <div class="stat-number primary">${stats.total}</div>
-                    <div class="stat-label">📊 Всего экзаменов</div>
-                </div>
-                
-                <div class="stat-card" style="animation-delay: 0.2s;">
-                    <div class="stat-number success">${stats.passed}</div>
-                    <div class="stat-label">✅ Успешно сдали</div>
-                    <div style="font-size: 0.9rem; color: var(--success); margin-top: 4px; font-weight: 700;">${passPercentage}%</div>
-                </div>
-                
-                <div class="stat-card" style="animation-delay: 0.3s;">
-                    <div class="stat-number danger">${stats.failed}</div>
-                    <div class="stat-label">❌ Не сдали</div>
-                    <div style="font-size: 0.9rem; color: var(--error); margin-top: 4px; font-weight: 700;">${failPercentage}%</div>
-                </div>
-                
-                <div class="stat-card" style="animation-delay: 0.4s;">
-                    <div class="stat-label" style="margin-bottom: 8px;">🎯 Процент успеха</div>
-                    <div class="progress-percentage">${passPercentage}%</div>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar-wrapper">
-                            <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
+            // Check if we're filtering for senior staff exams
+            const examTypeFilter = document.getElementById('examTypeFilter');
+            const isSeniorFilter = examTypeFilter && isSeniorStaffExam(examTypeFilter.value);
+            if (isSeniorFilter && stats.hasSeniorExams) {
+                statsHTML = `
+                    <div class="stat-card" style="animation-delay: 0.1s; grid-column: 1 / -1;">
+                        <div class="stat-number primary">${stats.seniorTotal}</div>
+                        <div class="stat-label">📊 Всего экзаменов</div>
+                    </div>
+                `;
+            } else if (!isSeniorFilter) {
+                statsHTML = `
+                    <div class="stat-card" style="animation-delay: 0.1s;">
+                        <div class="stat-number primary">${stats.total}</div>
+                        <div class="stat-label">📊 Всего экзаменов</div>
+                    </div>
+
+                    <div class="stat-card" style="animation-delay: 0.2s;">
+                        <div class="stat-number success">${stats.passed}</div>
+                        <div class="stat-label">✅ Успешно сдали</div>
+                        <div style="font-size: 0.9rem; color: var(--success); margin-top: 4px; font-weight: 700;">${passPercentage}%</div>
+                    </div>
+
+                    <div class="stat-card" style="animation-delay: 0.3s;">
+                        <div class="stat-number danger">${stats.failed}</div>
+                        <div class="stat-label">❌ Не сдали</div>
+                        <div style="font-size: 0.9rem; color: var(--error); margin-top: 4px; font-weight: 700;">${failPercentage}%</div>
+                    </div>
+
+                    <div class="stat-card" style="animation-delay: 0.4s;">
+                        <div class="stat-label" style="margin-bottom: 8px;">🎯 Процент успеха</div>
+                        <div class="progress-percentage">${passPercentage}%</div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
+                `;
+            }
             
+            container.innerHTML = statsHTML;
+
             setTimeout(() => {
                 const progressBar = document.getElementById('progressBarFill');
                 if (progressBar) {
                     progressBar.style.width = passPercentage + '%';
                 }
             }, 100);
+            if (isSeniorFilter && stats.hasSeniorExams) {
+                displaySeniorMessage();
+            } else {
+                removeSeniorMessage();
+            }
+        }
+        function displaySeniorMessage() {
+            let messageContainer = document.getElementById('seniorMessageContainer');
+            if (messageContainer) return;
+            messageContainer = document.createElement('div');
+            messageContainer.id = 'seniorMessageContainer';
+            messageContainer.style.cssText = `
+                background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(217, 119, 6, 0.2));
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 2px solid #f59e0b;
+                border-radius: 20px;
+                padding: 32px;
+                margin-bottom: 40px;
+                box-shadow: 0 8px 32px rgba(245, 158, 11, 0.3);
+                animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+                text-align: center;
+            `;
+            
+            messageContainer.innerHTML = `
+                <div style="font-size: 1.8rem; font-weight: 800; margin-bottom: 16px; color: #f59e0b;">
+                    📋 ПРОВЕРЯЕТСЯ ВРУЧНУЮ
+                </div>
+                <div style="font-size: 1.1rem; line-height: 1.8; color: var(--text-primary);">
+                    Данный экзамен проверяется лидером вручную.<br>
+                    Результат зависит от вашего знания материала.<br>
+                    Лидер проверит ваши ответы и даст вам результат.
+                </div>
+            `;
+            const filtersContainer = document.getElementById('filtersContainer');
+            if (filtersContainer) {
+                filtersContainer.parentNode.insertBefore(messageContainer, filtersContainer.nextSibling);
+            }
         }
         
+        function removeSeniorMessage() {
+            const messageContainer = document.getElementById('seniorMessageContainer');
+            if (messageContainer) {
+                messageContainer.remove();
+            }
+        }
+
         function populateFilters(data) {
             const examTypes = new Set();
             const months = new Set();
@@ -1423,7 +1746,7 @@
             
             document.getElementById('filtersContainer').style.display = 'block';
         }
-        
+
         function applyFilters() {
             const examType = document.getElementById('examTypeFilter').value;
             const month = document.getElementById('monthFilter').value;
@@ -1458,7 +1781,7 @@
             displayData(filteredData);
             displayStatistics(filteredData);
         }
-        
+
         async function loadData() {
             const refreshBtn = document.getElementById('refreshBtn');
             refreshBtn.classList.add('loading');
@@ -1475,14 +1798,12 @@
                 
                 const rawData = await response.json();
                 const normalizedData = normalizeData(rawData);
-                
-                // Сортировка по дате (новые сверху)
+
                 normalizedData.sort((a, b) => {
                     const dateA = a.A ? new Date(a.A) : new Date(0);
                     const dateB = b.A ? new Date(b.A) : new Date(0);
                     return dateB - dateA;
                 });
-                
                 allData = normalizedData;
                 filteredData = allData;
                 
@@ -1499,24 +1820,22 @@
             }
         }
 
+
         window.addEventListener('DOMContentLoaded', () => {
             loadData();
-            
             const modal = document.getElementById('examModal');
             const backdrop = document.querySelector('.modal-backdrop');
             const closeBtn = document.querySelector('.modal-close');
-            
             backdrop.addEventListener('click', closeModal);
             closeBtn.addEventListener('click', closeModal);
-            
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && modal.classList.contains('active')) {
                     closeModal();
                 }
             });
         });
-
     </script>
+
 
     <div id="examModal" class="modal">
         <div class="modal-backdrop"></div>
@@ -1544,7 +1863,7 @@
                 <div class="answers-section">
                     <div class="answers-title">📝 Ответы на вопросы</div>
                     <div id="modalAnswers">
-                    </div>
+                </div>
                 </div>
             </div>
         </div>
